@@ -1,1 +1,0 @@
-Smart Rickshaw android application
