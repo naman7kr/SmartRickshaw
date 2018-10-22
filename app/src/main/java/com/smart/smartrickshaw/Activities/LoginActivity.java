@@ -1,13 +1,9 @@
 package com.smart.smartrickshaw.Activities;
 
 import android.content.Intent;
-import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager;
-import android.content.pm.Signature;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
@@ -34,8 +30,6 @@ import com.smart.smartrickshaw.R;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
@@ -75,7 +69,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 //loginResult.getRecentlyGrantedPermissions()
                 boolean loggedIn = AccessToken.getCurrentAccessToken() == null;
                 Log.d("API123", "LOL");
-                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                Intent intent = new Intent(getApplicationContext(), MapsActivity.class);
                 startActivity(intent);
                 finish();
             }
@@ -172,7 +166,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private void updateUI(GoogleSignInAccount account) {
         if(account!=null) {
             Log.e("Mail",account.getEmail());
-            Intent intent = new Intent(this, MainActivity.class);
+            Intent intent = new Intent(this, MapsActivity.class);
             startActivity(intent);
             finish();
         }
