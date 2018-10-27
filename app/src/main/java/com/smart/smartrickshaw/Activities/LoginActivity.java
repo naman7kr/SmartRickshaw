@@ -69,7 +69,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 //loginResult.getRecentlyGrantedPermissions()
                 boolean loggedIn = AccessToken.getCurrentAccessToken() == null;
                 Log.d("API123", "LOL");
-                Intent intent = new Intent(getApplicationContext(), MapsActivity.class);
+                Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
                 startActivity(intent);
                 finish();
             }
@@ -166,7 +166,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private void updateUI(GoogleSignInAccount account) {
         if(account!=null) {
             Log.e("Mail",account.getEmail());
-            Intent intent = new Intent(this, MapsActivity.class);
+            Intent intent = new Intent(this, HomeActivity.class);
             startActivity(intent);
             finish();
         }

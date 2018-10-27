@@ -58,9 +58,12 @@
             android:value="@string/google_maps_key" />
 
         <activity
-            android:name=".Activities.MapsActivity"
+            android:name=".Activities.HomeActivity"
             android:label="@string/title_activity_home"
-            android:theme="@style/AppTheme"></activity>
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".Activities.SettingsActivity"
+            android:label="@string/title_activity_settings"></activity>
     </application>
 
 </manifest>
