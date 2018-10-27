@@ -1,7 +1,5 @@
 package com.smart.smartrickshaw.Fragment;
 
-import android.app.Activity;
-import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -18,12 +16,12 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.smart.smartrickshaw.R;
 
-public class MapsFragment extends Fragment implements OnMapReadyCallback{
+public class FindRidesFragment extends Fragment implements OnMapReadyCallback{
     private GoogleMap mMap;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_maps,container,false);
+        View view = inflater.inflate(R.layout.fragment_find_rides,container,false);
         return view;
     }
 

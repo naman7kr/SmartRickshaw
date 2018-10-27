@@ -116,7 +116,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
                 PreferenceManager
                         .getDefaultSharedPreferences(preference.getContext())
                         .getString(preference.getKey(), ""));
-    }
+}
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

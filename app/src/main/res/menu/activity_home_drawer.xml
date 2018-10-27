@@ -2,7 +2,6 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     tools:showIn="navigation_view">
-
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_find_rides"
@@ -13,14 +12,12 @@
             android:icon="@drawable/ic_menu_gallery"
             android:title="Wallet" />
     </group>
-
-    <item android:title="Communicate">
+    <item android:title="Others">
         <menu>
             <item
                 android:id="@+id/nav_settings"
                 android:icon="@drawable/ic_menu_share"
                 android:title="Settings" />
-
             <item
                 android:id="@+id/nav_feedback"
                 android:icon="@drawable/ic_menu_camera"
@@ -28,5 +25,4 @@
                 />
         </menu>
     </item>
-
 </menu>
