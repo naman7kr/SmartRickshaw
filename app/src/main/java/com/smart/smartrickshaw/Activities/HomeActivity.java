@@ -1,15 +1,20 @@
 package com.smart.smartrickshaw.Activities;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
+import android.support.v7.widget.Toolbar;;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -17,10 +22,15 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GoogleApiAvailability;
 import com.smart.smartrickshaw.Fragment.FindRidesFragment;
 import com.smart.smartrickshaw.Fragment.ProfileFragment;
 import com.smart.smartrickshaw.Fragment.WalletFragment;
 import com.smart.smartrickshaw.R;
+import com.squareup.picasso.Picasso;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -32,6 +42,9 @@ public class HomeActivity extends AppCompatActivity
     CircleImageView nav_img;
     TextView nav_name;
     NavigationView navigationView;
+    GoogleSignInAccount account;
+    private static final String TAG = "HomeActivity";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,7 +55,10 @@ public class HomeActivity extends AppCompatActivity
         View header = navigationView.getHeaderView(0);
         nav_img = header.findViewById(R.id.nav_image);
         nav_name = header.findViewById(R.id.nav_user_name);
+        account = GoogleSignIn.getLastSignedInAccount(this);
 
+
+        
         fl = findViewById(R.id.home_container);
         setSupportActionBar(toolbar);
 
@@ -60,6 +76,12 @@ public class HomeActivity extends AppCompatActivity
         ft.add(R.id.home_container,new FindRidesFragment()).commit();
         navigationView.setCheckedItem(R.id.nav_find_rides);
 
+        Picasso.with(this)
+                .load(account.getPhotoUrl())
+                .placeholder(android.R.drawable.sym_def_app_icon)
+                .error(android.R.drawable.sym_def_app_icon)
+                .into(nav_img);
+        nav_name.setText(account.getGivenName());
         nav_img.setOnClickListener(this);
         nav_name.setOnClickListener(this);
 
@@ -141,7 +163,6 @@ public class HomeActivity extends AppCompatActivity
                 menu.getItem(i).setChecked(false);
             }
             drawer.closeDrawer(GravityCompat.START);
-
         }
     }
 }

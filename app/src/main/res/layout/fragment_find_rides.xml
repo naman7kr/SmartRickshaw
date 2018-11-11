@@ -10,6 +10,6 @@
     android:layout_height="match_parent"
     tools:context=".Activities.HomeActivity"
     android:layout_below="@+id/app_bar_layout"
-
     />
+
 </RelativeLayout>
