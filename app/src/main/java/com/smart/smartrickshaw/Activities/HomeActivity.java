@@ -1,21 +1,15 @@
 package com.smart.smartrickshaw.Activities;
 
-import android.Manifest;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
-
-import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;;
-import android.util.Log;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -24,8 +18,6 @@ import android.widget.TextView;
 
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
-import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.GoogleApiAvailability;
 import com.smart.smartrickshaw.Fragment.FindRidesFragment;
 import com.smart.smartrickshaw.Fragment.ProfileFragment;
 import com.smart.smartrickshaw.Fragment.WalletFragment;
@@ -34,42 +26,52 @@ import com.squareup.picasso.Picasso;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
+;
+
 public class HomeActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
-    FragmentTransaction ft;
-    DrawerLayout drawer;
-    FrameLayout fl;
-    CircleImageView nav_img;
-    TextView nav_name;
-    NavigationView navigationView;
-    GoogleSignInAccount account;
+    //vars
+    private FragmentTransaction ft;
+    private GoogleSignInAccount account;
+
+    //widgets
+    private DrawerLayout drawer;
+    private FrameLayout fl;
+    private CircleImageView nav_img;
+    private TextView nav_name;
+    private NavigationView navigationView;
+    private Toolbar toolbar;
+
+    //constants
     private static final String TAG = "HomeActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-        Toolbar toolbar =  findViewById(R.id.toolbar);
+
+        init();
+
+        setSupportActionBar(toolbar);
+
+        setNavDrawer();
+    }
+    private void init(){
+        toolbar =  findViewById(R.id.toolbar);
         drawer = findViewById(R.id.drawer_layout);
         navigationView =  findViewById(R.id.nav_view);
         View header = navigationView.getHeaderView(0);
         nav_img = header.findViewById(R.id.nav_image);
         nav_name = header.findViewById(R.id.nav_user_name);
         account = GoogleSignIn.getLastSignedInAccount(this);
-
-
-        
         fl = findViewById(R.id.home_container);
-        setSupportActionBar(toolbar);
-
-
-        DrawerLayout drawer =  findViewById(R.id.drawer_layout);
+        drawer =  findViewById(R.id.drawer_layout);
+    }
+    private void setNavDrawer(){
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
-
-
         navigationView.setNavigationItemSelectedListener(this);
 
         ft = getSupportFragmentManager().beginTransaction();
@@ -84,9 +86,7 @@ public class HomeActivity extends AppCompatActivity
         nav_name.setText(account.getGivenName());
         nav_img.setOnClickListener(this);
         nav_name.setOnClickListener(this);
-
     }
-
     @Override
     public void onBackPressed() {
 
